@@ -80,26 +80,25 @@ document.addEventListener("DOMContentLoaded", function () {
         errorMessage.style.display = 'none';
     
         try {
-          const response = await fetch('./assets/php/feedback.php', {
-            method: 'POST',
-            body: formData
-          });
+            const response = await fetch('../php/feedback.php', {
+                method: 'POST',
+                body: formData
+            });
     
-          const data = await response.json();
+            const data = await response.json();
     
-          if (data.send_status) {
-            successMessage.style.display = 'block';
-            form.reset();
-          } else {
-            errorMessage.textContent = data.alert_message || 'Something went wrong, try again!';
-            errorMessage.style.display = 'block';
-          }
+            if (data.send_status) {
+                successMessage.style.display = 'block';
+                form.reset();
+            } else {
+                errorMessage.textContent = data.alert_message || 'Something went wrong, try again!';
+                errorMessage.style.display = 'block';
+            }
         } catch (error) {
-          errorMessage.textContent = 'Network error! Try again later.';
-          errorMessage.style.display = 'block';
-          console.error('Error:', error);
+            errorMessage.textContent = 'Network error! Try again later.';
+            errorMessage.style.display = 'block';
+            console.error('Error:', error);
         }
     });
     
-
 });
